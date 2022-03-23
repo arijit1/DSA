@@ -10,7 +10,9 @@
 let intervals = [[2, 6], [1, 3], [8, 10], [15, 18]];
 let intervals_2 = [[1, 4], [2, 3]];
 var merge = function (intervals) {
+    //sort array using first element of each subarray
     intervals = intervals.sort(function (a, b) { return a[0] - b[0]; });
+    
     const result = [intervals[0]];
     for (let interval of intervals) {
         let e1 = result[result.length - 1][1];
