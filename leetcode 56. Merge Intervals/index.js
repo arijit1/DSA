@@ -7,27 +7,24 @@
  * Output: [[1,6],[8,10],[15,18]]
  * Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
  */
-let intervals = [[2, 6],[1, 3], [8, 10], [15, 18]];
-let intervals_2 = [[1,4],[2,3]];
+let intervals = [[2, 6], [1, 3], [8, 10], [15, 18]];
+let intervals_2 = [[1, 4], [2, 3]];
 var merge = function (intervals) {
-    intervals = intervals.sort(function (a, b) {
-        if (a[0] == b[0]) {
-            return a[1] - b[1];
-        }
-        return a[0] - b[0];
-    });
-    
-    for (let i = 0; i < intervals.length - 1; i++) {
-        if (intervals[i][1] >= intervals[i + 1][0] && intervals[i][1]<=intervals[i+1][1]) {
-            intervals[i + 1][0] = intervals[i][0];
-            intervals.shift();
-        }else{
-            intervals[i+1][0] = intervals[i][0];
-            intervals[i+1][1] = intervals[i][1];
+    intervals = intervals.sort(function (a, b) { return a[0] - b[0]; });
+    const result = [intervals[0]];
+    for (let interval of intervals) {
+        let e1 = result[result.length - 1][1];
+        let s2 = interval[0];
+        let e2 = interval[1];
+
+        if (e1 >= s2) {
+            result[result.length - 1][1] = Math.max(e1, e2);
+        } else {
+            result.push(interval)
         }
     }
-    
-    return intervals;
+
+    return result;
 };
 console.log(merge(intervals));
 console.log(merge(intervals_2));
