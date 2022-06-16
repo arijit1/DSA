@@ -5,7 +5,7 @@
  * @param {number} color
  * @return {number[][]}
  */
-
+//DFS APPROACH
  var allDirection = (i,j,row,col,image,color,faceVal)=>{
     while(i>=0 && j>=0 && i<row && j<col){  //covering edges
         if(image[i][j] == faceVal){
