@@ -8,13 +8,14 @@ function findLongestConseqSubseq(arr, n) {
     for (let i = 0; i < n; i++) {
         s.add(arr[i]);
     }
+    console.log(s);
     for (let i = 0; i < n; i++) {
         if (!s.has(arr[i] - 1)) {
             var j = arr[i];
             while (s.has(j)) {
                 j++;
             }
-            console.log(j);
+            console.log(j,arr[i]);
             ans = Math.max(ans, j - arr[i]);
         }
     }
