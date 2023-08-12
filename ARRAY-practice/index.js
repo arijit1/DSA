@@ -5,13 +5,13 @@ let ans = [];
 //O(n^2)
 for(let i=0;i<arr.length-1;i++){
     for(let j=i+1;j<arr.length;j++){
-        console.log(j)
+        //console.log(j)
         if(arr[i]+arr[j]===target){
             ans.push([arr[i],arr[j]])
         }
     }
 }
-console.log(ans);
+//console.log(ans);
 
 let map = new Map();
 let ans2 = [];
@@ -23,5 +23,5 @@ for(let p=0;p<arr.length;p++){
         map.set(compare,p)
     }
 }
-console.log(map)
+//console.log(map)
 console.log(ans2)
