@@ -64,4 +64,4 @@ class LinkedList {
     }
 }
 let ll = new LinkedList();
-ll.isLinkedListPallindrome();
+ll.callRecursiveReverseNodes();
