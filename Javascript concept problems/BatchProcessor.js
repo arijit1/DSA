@@ -3,7 +3,7 @@
 
 /** <p id="search"></p>
 //const ele = document.getElementById("search"); */
-function process(length, batch = 100){
+function process_full(length, batch = 100){
     let index = 0;
     
     function batchRunner(){
@@ -19,7 +19,7 @@ function process(length, batch = 100){
     batchRunner(); /** or requestAnimationFrame(batchRunner) */
 }
 
-process(1000000,100);
+process_full(1000000,100);
 
 
 /** 
@@ -56,3 +56,35 @@ function process_RIC(length, batch = 100) {
 }
 
 process_RIC(10000, 100);
+
+/**
+ * process 1000 list item that needs to be appened to <ul>
+ * <ul id="div"></ul>
+ */
+function process(length, batch, callback){
+  let index = 0;
+  
+  
+  function work(){
+    const fragment = new DocumentFragment();
+    let end = Math.min(index+batch,length);
+    while(index<end){
+      let ele = document.createElement("li");
+      ele.textContent = index;
+      fragment.append(ele);
+      index++;
+    }
+    
+    if(index<length){
+      setTimeout(work,0);
+    }
+    callback(fragment);
+  }
+  
+  work();
+}
+
+let element = document.getElementById("div");
+process(1000,10,function(val){
+  element.append(val);
+});
